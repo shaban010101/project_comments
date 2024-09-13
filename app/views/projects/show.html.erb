@@ -2,7 +2,7 @@
 
 <p>Status: <%= @project.status.humanize %></p>
 
-<h1> Comments </h1>
+<h2> Comments </h2>
 
 <% if !@comments.empty? %>
   <% @comments.each do |comment| %>
@@ -11,4 +11,14 @@
   <% end %>
 <% else %>
   <p> No comments yet!</p>
+<% end %>
+
+<h2> Project History </h2>
+<% if !@histories.empty? %>
+  <% @histories.each do |history| %>
+    <%= history.change %>
+    <%= history.created_at %>
+  <% end %>
+<% else %>
+  <p> No history yet</p>
 <% end %>

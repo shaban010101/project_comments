@@ -10,6 +10,7 @@ RSpec.describe ProjectsController, type: :controller do
         expect(response).to have_http_status(:ok)
         expect(assigns(:project)).to be_a(Project)
         expect(assigns(:comments)).to be_a(ActiveRecord::AssociationRelation)
+        expect(assigns(:histories)).to be_a(ActiveRecord::AssociationRelation)
       end
     end
 
