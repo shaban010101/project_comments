@@ -1,14 +1,42 @@
+<% if flash[:error] %>
+  <h3>Please fix the following errors: </h3>
+  <% flash[:error].each do |error| %>
+    <div>
+      <p>* <%= error %></p>
+    </div>
+  <% end %>
+<% end %>
+
+<% if flash[:notice]%>
+  <div>
+    <p><%= flash[:notice] %></p>
+  </div>
+<% end %>
+
 <h1><%= @project.name %></h1>
 
 <p>Status: <%= @project.status.humanize %></p>
 
 <h2> Comments </h2>
+<h3> New comment<h3>
+  <%= form_for :comment, url: project_comments_path(@project) do |form| %>
+    <%= form.label :comment, "Comment" %>
+    <%= form.text_area :comment %>
 
-<% if !@comments.empty? %>
-  <% @comments.each do |comment| %>
-    <%= comment.comment %>
-    <%= comment.commentor %>
+    <%= form.label :commentor, "Name of commentor" %>
+    <%= form.text_field :commentor %>
+
+    <%= form.submit "Add comment" %>
   <% end %>
+<% if !@comments.empty? %>
+  <ul>
+    <% @comments.each do |comment| %>
+      <li>
+        <p>Comment: <%= comment.comment %></p>
+        <p>Name: <%= comment.commentor %></p>
+      </li>
+    <% end %>
+  </ul>
 <% else %>
   <p> No comments yet!</p>
 <% end %>
@@ -20,5 +48,5 @@
     <%= history.created_at %>
   <% end %>
 <% else %>
-  <p> No history yet</p>
+  <p>No history yet</p>
 <% end %>
