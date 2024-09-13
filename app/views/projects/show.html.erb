@@ -1,3 +1,14 @@
 <h1><%= @project.name %></h1>
 
 <p>Status: <%= @project.status.humanize %></p>
+
+<h1> Comments </h1>
+
+<% if !@comments.empty? %>
+  <% @comments.each do |comment| %>
+    <%= comment.comment %>
+    <%= comment.commentor %>
+  <% end %>
+<% else %>
+  <p> No comments yet!</p>
+<% end %>

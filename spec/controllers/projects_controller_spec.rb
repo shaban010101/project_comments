@@ -8,6 +8,8 @@ RSpec.describe ProjectsController, type: :controller do
       it "gives back an ok status" do
         get :show, params: { id: project.id }
         expect(response).to have_http_status(:ok)
+        expect(assigns(:project)).to be_a(Project)
+        expect(assigns(:comments)).to be_a(ActiveRecord::AssociationRelation)
       end
     end
 
