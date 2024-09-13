@@ -28,6 +28,7 @@ RSpec.describe ProjectsController, type: :controller do
         update_project(project, "complete")
         expect(response).to redirect_to(project_path(project))
         expect(project.reload.status).to eq("complete")
+        expect(ProjectHistory.count).to eq(1)
       end
     end
 
@@ -36,6 +37,7 @@ RSpec.describe ProjectsController, type: :controller do
         update_project(project, "completed")
         expect(response).to render_template("projects/show")
         expect(project.reload.status).to eq("ready")
+        expect(ProjectHistory.count).to eq(0)
       end
     end
   end

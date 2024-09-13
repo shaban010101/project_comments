@@ -9,6 +9,11 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
 
     if @project.update(project_params)
+      ProjectHistoryCreator.new(
+        params[:id],
+        "Project status change to: #{project_params[:status]}"
+      ).call
+
       flash[:notice] = "Project has been updated"
       redirect_to @project
     else

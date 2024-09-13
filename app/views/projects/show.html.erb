@@ -54,10 +54,11 @@
 
 <h2> Project History </h2>
 <% if !@histories.empty? %>
-  <% @histories.each do |history| %>
-    <%= history.change %>
-    <%= history.created_at %>
-  <% end %>
+  <ul>
+    <% @histories.each do |history| %>
+      <li><p>Change: <%= history.change %> Time: <%= history.created_at %></p></li>
+    <% end %>
+  </ul>
 <% else %>
   <p>No history yet</p>
 <% end %>
