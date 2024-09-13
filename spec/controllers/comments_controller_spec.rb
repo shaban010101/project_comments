@@ -13,9 +13,12 @@ RSpec.describe CommentsController, type: :controller do
           }
         }
       end
-      it "redirects to the project" do
+
+      it "returns a successful response", :aggregate_failures do
         post :create, params: params
         expect(response).to have_http_status(:redirect)
+        expect(Comment.count).to eq(1)
+        expect(ProjectHistory.count).to eq(1)
       end
     end
 
@@ -30,9 +33,11 @@ RSpec.describe CommentsController, type: :controller do
         }
       end
 
-      it "stays on the page and renders the error" do
+      it "returns an error response", :aggregate_failures do
         post :create, params: params
         expect(response).to have_http_status(:unprocessable_content)
+        expect(Comment.count).to eq(0)
+        expect(ProjectHistory.count).to eq(0)
       end
     end
   end

@@ -29,7 +29,7 @@
 <% end %>
 
 <h2> Comments </h2>
-<h3> New comment<h3>
+<h3> New comment</h3>
   <%= form_for :comment, url: project_comments_path(@project) do |form| %>
     <%= form.label :comment, "Comment" %>
     <%= form.text_area :comment %>
