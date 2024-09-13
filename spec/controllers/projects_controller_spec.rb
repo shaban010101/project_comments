@@ -43,6 +43,6 @@ RSpec.describe ProjectsController, type: :controller do
   end
 
   def update_project(project, status)
-    patch :update, params: { id: project.id, project: { status: status} }
+    patch :update, params: { id: project.id, project: { status: status } }
   end
 end

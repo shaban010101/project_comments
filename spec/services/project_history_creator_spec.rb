@@ -20,7 +20,7 @@ RSpec.describe ProjectHistoryCreator do
 
     context "when the project history has not been created" do
       let(:change) { nil }
-      
+
       it "outputs false" do
         expect(creator.call).to eq(false)
       end

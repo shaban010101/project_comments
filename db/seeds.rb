@@ -19,7 +19,7 @@ Project.all.each do |project|
     ).call
   end
 
-  ["in_progress", "complete"].each do |status|
+  [ "in_progress", "complete" ].each do |status|
     project.update(status: status)
     ProjectHistoryCreator.new(project.id, "Project status change to: #{status}").call
   end
